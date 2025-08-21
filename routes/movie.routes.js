@@ -38,4 +38,43 @@ router.post('/', verifyToken, isAdmin, async (req, res) => {
   }
 });
 
+// Atualizar filme (apenas admin)
+router.put('/:id', verifyToken, isAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { titulo, genero, ano, sinopse, capaUrl } = req.body;
+
+    const atualizado = await Movie.findByIdAndUpdate(
+      id,
+      { titulo, genero, ano, sinopse, capaUrl },
+      { new: true } // retorna o filme já atualizado
+    );
+
+    if (!atualizado) {
+      return res.status(404).json({ message: 'Filme não encontrado' });
+    }
+
+    return res.json(atualizado);
+  } catch (err) {
+    return res.status(500).json({ message: 'Erro ao atualizar filme', error: err.message });
+  }
+});
+
+// Deletar filme (apenas admin)
+router.delete('/:id', verifyToken, isAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletado = await Movie.findByIdAndDelete(id);
+
+    if (!deletado) {
+      return res.status(404).json({ message: 'Filme não encontrado' });
+    }
+
+    return res.json({ message: 'Filme removido com sucesso' });
+  } catch (err) {
+    return res.status(500).json({ message: 'Erro ao deletar filme', error: err.message });
+  }
+});
+
 export default router;
+
