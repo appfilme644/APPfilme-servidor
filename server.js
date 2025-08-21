@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Rotas
 app.use('/auth', authRoutes);
-app.use('/filmes', movieRoutes);
+app.use('/movies', movieRoutes);
 
 // Iniciar servidor
 const PORT = process.env.PORT || 3001;
