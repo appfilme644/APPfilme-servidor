@@ -4,7 +4,7 @@ const movieSchema = new mongoose.Schema(
   {
     titulo: { type: String, required: true },
     genero: { type: String, required: true },
-    ano: { type: Number, required: true },
+    ano: { type: String, required: true },
     sinopse: { type: String, required: true },
     capaUrl: { type: String } // opcional
   },
@@ -12,3 +12,4 @@ const movieSchema = new mongoose.Schema(
 );
 
 export default mongoose.model('Movie', movieSchema);
+
