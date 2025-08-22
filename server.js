@@ -4,6 +4,7 @@ import cors from 'cors';
 import { connectDB } from './config/db.js';
 import authRoutes from './routes/auth.routes.js';
 import movieRoutes from './routes/movie.routes.js';
+import favoriteRoutes from './routes/favorite.routes.js';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 // Rotas
 app.use('/auth', authRoutes);
 app.use('/movies', movieRoutes);
+app.use('/favorites', favoriteRoutes);
 
 // Iniciar servidor
 const PORT = process.env.PORT || 3001;
@@ -23,3 +25,4 @@ connectDB().then(() => {
     console.log(`✅ Servidor rodando na porta ${PORT}`);
   });
 });
+
