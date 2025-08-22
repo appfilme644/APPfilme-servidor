@@ -5,6 +5,7 @@ import { connectDB } from './config/db.js';
 import authRoutes from './routes/auth.routes.js';
 import movieRoutes from './routes/movie.routes.js';
 import favoriteRoutes from './routes/favorite.routes.js';
+import googleAuthRoutes from "./routes/googleAuth.routes.js";
 
 const app = express();
 
@@ -16,6 +17,8 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/movies', movieRoutes);
 app.use('/favorites', favoriteRoutes);
+app.use("/auth", googleAuthRoutes);
+
 
 // Iniciar servidor
 const PORT = process.env.PORT || 3001;
